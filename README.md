@@ -1,2 +1,2 @@
-# Hafta-3
-Minesweeper Project
+# Hafta-3 -  Minesweeper Project
+
