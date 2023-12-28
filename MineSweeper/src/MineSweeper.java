@@ -4,17 +4,17 @@ import java.util.Scanner;
 public class MineSweeper {
 
     private String[][] mayinlar; // Mayınları tutmak için matris
-    private String[][] gosterilenHarita; // Oyuncuya gösterilen oyun tahtası matrisi
+    private String[][] gosterilenHarita; // Oyuncuya gösterilen oyun alanı matrisi
     private int toplamMayin; // Toplam mayın sayısı
 
-    // Yapıcı metod
+    // Kurucu metot
     public MineSweeper() {
         this.mayinlar = null;
         this.gosterilenHarita = null;
         this.toplamMayin = 0;
     }
 
-    // Oyunu başlatan metod
+    // Oyunu başlatan metot
     public void run() {
         Scanner scanner = new Scanner(System.in);
 
@@ -35,6 +35,7 @@ public class MineSweeper {
             mayinlariYerlestir((satirSayisi * sutunSayisi) / 4);
 
             gosterilenHaritayiOlustur(satirSayisi, sutunSayisi);
+            System.out.println("Mayın Tarlası Oyununa Hoşgeldiniz !");
 
             oyunuOyna(satirSayisi, sutunSayisi);
 
@@ -51,7 +52,7 @@ public class MineSweeper {
         System.out.println("Oyunu kapattınız. İyi günler!");
     }
 
-    // Mayınları tutacak matrisi oluşturan metod
+    // Mayınları tutacak matrisi oluşturan metot
     private void mayinlariOlustur(int satirSayisi, int sutunSayisi) {
         mayinlar = new String[satirSayisi][sutunSayisi];
         toplamMayin = 0;
@@ -64,7 +65,7 @@ public class MineSweeper {
         }
     }
 
-    // Oyuncuya gösterilen oyun tahtasını oluşturan metod
+    // Oyuncuya gösterilen oyun tahtasını oluşturan metot
     private void gosterilenHaritayiOlustur(int satirSayisi, int sutunSayisi) {
         gosterilenHarita = new String[satirSayisi][sutunSayisi];
 
@@ -76,7 +77,7 @@ public class MineSweeper {
         }
     }
 
-    // Oyunu başlatan metod
+    // Oyunu başlatan metot
     private void oyunuOyna(int satirSayisi, int sutunSayisi) {
         Scanner input = new Scanner(System.in);
         boolean oyunDevamEdiyor = true;
@@ -96,12 +97,13 @@ public class MineSweeper {
             }
 
             if (mayinlar[satir][sutun].equals("*")) {
-                System.out.println("Oyunu kaybettiniz! Seçtiğiniz koordinatta bir mayın bulunuyor.");
+                System.out.println("===================");
+                System.out.println("Oyunu kaybettiniz!");
                 oyunDevamEdiyor = false;
             } else {
                 int mayinSayisi = 0;
 
-                // Çevresindeki hücreleri kontrol et ve mayın sayısını hesapla
+                // Çevredeki hücreleri kontrol et ve mayın sayısını hesapla
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         int yeniSatir = satir + i;
@@ -121,6 +123,7 @@ public class MineSweeper {
 
                 // Oyunu kazanıp kazanmadığını kontrol et
                 if (toplamMayin == (satirSayisi * sutunSayisi) - (satirSayisi * sutunSayisi) / 4) {
+                    System.out.println("===================");
                     System.out.println("Tebrikler! Oyunu kazandınız!");
                     oyunDevamEdiyor = false;
                 }
@@ -130,24 +133,24 @@ public class MineSweeper {
         oyunSonuDurumu();
     }
 
-    // Oyuncuya gösterilen haritayı ekrana yazdıran metod
+    // Oyuncuya gösterilen haritayı ekrana yazdıran metot
     private void gosterilenHaritayiGoster() {
-        System.out.println("---------------");
+        System.out.println("===================");
         for (String[] satir : gosterilenHarita) {
             for (String hucre : satir) {
                 System.out.print(hucre + " ");
             }
             System.out.println();
         }
-        System.out.println("----------------");
+        System.out.println("===================");
     }
 
-    // Geçerli bir hamle olup olmadığını kontrol eden metod
+    // Geçerli bir hamle olup olmadığını kontrol eden metot
     private boolean gecerliHamle(int satir, int sutun, int satirSayisi, int sutunSayisi) {
         return satir >= 0 && satir < satirSayisi && sutun >= 0 && sutun < sutunSayisi && gosterilenHarita[satir][sutun].equals("-");
     }
 
-    // Mayınları rastgele yerleştiren metod
+    // Mayınları rastgele yerleştiren metot
     private void mayinlariYerlestir(int mayinSayisi) {
         Random random = new Random();
 
@@ -168,7 +171,7 @@ public class MineSweeper {
         }
     }
 
-    // Oyunun son durumunu gösteren metod
+    // Oyunun son durumunu gösteren metot
     private void oyunSonuDurumu() {
         // Oyunun sonunda haritayı güncelle, tüm mayınları göster
         for (int i = 0; i < mayinlar.length; i++) {
