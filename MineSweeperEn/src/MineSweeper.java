@@ -19,10 +19,10 @@ public class MineSweeper {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.print("Enter the number of rows in the minefield: ");
+            System.out.print("Enter the number of rows in the minesweeper: ");
             int numRows = scanner.nextInt();
 
-            System.out.print("Enter the number of columns in the minefield: ");
+            System.out.print("Enter the number of columns in the minesweeper: ");
             int numCols = scanner.nextInt();
 
             if (numRows < 2 || numCols < 2) {
