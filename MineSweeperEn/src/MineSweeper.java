@@ -1,8 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class MineSweeper {
-
+public class MineSweeper {                                                          // Değerlendirme formu 5
     private String[][] mines; // Matrix to hold mines
     private String[][] displayedMap; // Matrix for the map displayed to the player
     private int totalMines; // Total number of mines
@@ -16,8 +15,7 @@ public class MineSweeper {
 
     // Method to start the game
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-
+        Scanner scanner = new Scanner(System.in);                                   // Değerlendirme formu 6 ve 7
         while (true) {
             System.out.print("Enter the number of rows in the minesweeper: ");
             int numRows = scanner.nextInt();
@@ -85,26 +83,26 @@ public class MineSweeper {
         while (gameInProgress) {
             showDisplayedMap();
 
-            System.out.print("Enter the row: ");
+            System.out.print("Enter the row: ");                                    // Değerlendirme formu 9
             int row = input.nextInt();
 
             System.out.print("Enter the column: ");
             int col = input.nextInt();
 
-            if (!isValidMove(row, col, numRows, numCols)) {
+            if (!isValidMove(row, col, numRows, numCols)) {                         // Değerlendirme formu 10
                 System.out.println("Invalid coordinates! Please enter coordinates within the boundaries.");
                 continue;
             }
 
-            if (mines[row][col].equals("*")) {
-                System.out.println("===================");
+            if (mines[row][col].equals("*")) {                                      // Değerlendirme formu 13
+                System.out.println("===================");                          // Değerlendirme formu 15
                 System.out.println("You lost the game!");
                 gameInProgress = false;
             } else {
                 int mineCount = 0;
 
                 // Check surrounding cells and calculate the number of mines
-                for (int i = -1; i <= 1; i++) {
+                for (int i = -1; i <= 1; i++) {                                     // Değerlendirme formu 12
                     for (int j = -1; j <= 1; j++) {
                         int newRow = row + i;
                         int newCol = col + j;
@@ -122,9 +120,9 @@ public class MineSweeper {
                 totalMines++;
 
                 // Check if the player has won the game
-                if (totalMines == (numRows * numCols) - (numRows * numCols) / 4) {
+                if (totalMines == (numRows * numCols) - (numRows * numCols) / 4) {  // Değerlendirme formu 14
                     System.out.println("===================");
-                    System.out.println("Congratulations! You won the game!");
+                    System.out.println("Congratulations! You won the game!");       // Değerlendirme formu 15
                     gameInProgress = false;
                 }
             }
@@ -134,7 +132,7 @@ public class MineSweeper {
     }
 
     // Method to show the displayed map to the player
-    private void showDisplayedMap() {
+    private void showDisplayedMap() {                                               // Değerlendirme formu 11
         System.out.println("===================");
         for (String[] row : displayedMap) {
             for (String cell : row) {
@@ -151,7 +149,7 @@ public class MineSweeper {
     }
 
     // Method to randomly place the mines
-    private void placeMines(int numMines) {
+    private void placeMines(int numMines) {                                         // Değerlendirme formu 8
         Random random = new Random();
 
         int numRows = mines.length;
